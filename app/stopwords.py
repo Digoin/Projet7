@@ -1,4 +1,5 @@
-words = ["a",
+words = [
+"a",
 "abord",
 "absolument",
 "afin",
