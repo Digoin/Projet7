@@ -26,14 +26,20 @@ def stopwords_filter(entry):
 class Geoencoder:
 
     def __init__(self, search):
-        self.json_dict = requests.get("https://maps.googleapis.com/maps/api/geocode/json?address={}&key={}".format(search, GOOGLE_API_KEY))
+        self.search = search
     
-    def research(self):
-        location = json.loads(self.json_dict.text)["results"][0]["geometry"]["location"]
-        latitude = location["lat"]
-        longitude = location["lng"]
-        print("latitude = {}, longitude = {}".format(latitude, longitude))
+    def get_response(self):
+        response = requests.get("https://maps.googleapis.com/maps/api/geocode/json?address={}&key={}".format(self.search, GOOGLE_API_KEY))
+        json_dict = response.text
+        self.research(json_dict)
+
+    def research(self, json_dict):
+        results = json.loads(json_dict)["results"][0]
+        latitude = results["geometry"]["location"]["lat"]
+        longitude = results["geometry"]["location"]["lng"]
+        address = results["formatted_address"]
+        print("latitude = {}, longitude = {}, address = {}".format(latitude, longitude, address))
 
 
-test = Geoencoder("rue+martin+du+gard")
-test.research()
+test = Geoencoder("5+avenue+anatole+france")
+test.get_response()
