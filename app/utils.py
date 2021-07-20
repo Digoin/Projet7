@@ -24,22 +24,45 @@ def stopwords_filter(entry):
     return ("+".join(request))
 
 class Geoencoder:
-
-    def __init__(self, search):
-        self.search = search
     
-    def get_response(self):
-        response = requests.get("https://maps.googleapis.com/maps/api/geocode/json?address={}&key={}".format(self.search, GOOGLE_API_KEY))
-        json_dict = response.text
-        self.research(json_dict)
+    def get_response(self, search):
+        response = requests.get(f"https://maps.googleapis.com/maps/api/geocode/json?address={search}&key={GOOGLE_API_KEY}")
+        return json.loads(response.text)
 
-    def research(self, json_dict):
-        results = json.loads(json_dict)["results"][0]
+    def parse_address(self, data):
+        results = data["results"][0]
         latitude = results["geometry"]["location"]["lat"]
         longitude = results["geometry"]["location"]["lng"]
         address = results["formatted_address"]
-        print("latitude = {}, longitude = {}, address = {}".format(latitude, longitude, address))
+        return {
+            "latitude" : latitude,
+            "longitude" : longitude,
+            "address" : address
+        }
 
+class Wikipedia:
 
-test = Geoencoder("5+avenue+anatole+france")
-test.get_response()
+    def research_address(self, address):
+        research = address.replace(" ", "+")
+        response = requests.get("https://fr.wikipedia.org/w/api.php?action=query&list=search&srsearch={}&format=json".format(research))
+        json_dict = response.text
+        self.research_address_title(json_dict)
+    
+    def research_address_title(self, json_dict):
+        title = json.loads(json_dict)["query"]["search"][0]["title"]
+        self.research_place(title)
+    
+    def research_place(self, title):
+        research = title.replace(" ", "+")
+        response = requests.get("https://fr.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles={}&formatversion=2&exsentences=5&exlimit=1&explaintext=1".format(research))
+        json_dict = response.text
+        self.research_place_extract(json_dict)
+    
+    def research_place_extract(self, json_dict):
+        extract = json.loads(json_dict)["query"]["pages"][0]["extract"]
+        self.correction(extract)
+
+    def correction(self, extract):
+        extract = extract.replace("\n", "")
+        print(extract)
+        return extract
