@@ -1,0 +1,15 @@
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Question</title>
+</head>
+<body>
+    {% from "_formhelpers.html" import render_field %}
+<form method=post>
+  <dl>
+    {{ render_field(form.question) }}
+  </dl>
+  <p><input type=submit value=Register>
+</form>
+</body>
+</html>
