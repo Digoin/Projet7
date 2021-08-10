@@ -3,10 +3,10 @@ from flask import Flask, render_template, request
 from werkzeug.utils import redirect
 from werkzeug.wrappers import response
 from flask_cors import CORS
-from .utils import Filter, Geoencoder, Wikipedia
-# from .test import parser
+from .utils.filter import Filter
+from .utils.geoencoder import Geoencoder
+from .utils.wikipedia import Wikipedia
 from .forms import QuestionForm
-from . import utils
 
 
 app = Flask(__name__)
@@ -26,21 +26,22 @@ def question(form_data):
     geoencoder = Geoencoder()
     wikipedia = Wikipedia()
 
-    punctuation_filtered = data_filter.punctuation(form_data["question"])
+    punctuation_filtered = data_filter.punctuation(form_data)
     filtered = data_filter.stopwords(punctuation_filtered)
 
     geo_response = geoencoder.get_response(filtered)
     location = geoencoder.parse_address(geo_response)
 
+    location["address"] = data_filter.abbreviation(location["address"])
     address_dict = wikipedia.research_address(location)
     title = wikipedia.research_address_title(address_dict)
+    
     if title == None:
         address = location["address"]
         return f"Je n'ai pas d'anecdote sur \"{address}\" à te raconter mon enfant."
     place_dict = wikipedia.research_place(title)
     extract = wikipedia.research_place_extract(place_dict)
     data = wikipedia.correction(extract)
-
     return data
 
 @app.route("/api/")
