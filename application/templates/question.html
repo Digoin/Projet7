@@ -4,12 +4,8 @@
     <title>Question</title>
 </head>
 <body>
-    {% from "_formhelpers.html" import render_field %}
-<form method=post>
-  <dl>
-    {{ render_field(form.question) }}
-  </dl>
-  <p><input type=submit value=Register>
-</form>
+  <label>Question</label>
+  <input type="submit" onclick="ask()" value="Register">
+  <script src="/static/script.js"></script>
 </body>
 </html>
