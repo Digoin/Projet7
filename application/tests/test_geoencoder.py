@@ -13,9 +13,9 @@ def test_parse_address():
         JSON_DICT = json.load(file)
 
     test_dict = {
-        "latitude" : 44.8496861,
-        "longitude" : -0.5085099,
-        "address" : "1 Rue Martin du Gard, 33150 Cenon, France"
+        "latitude": 44.8496861,
+        "longitude": -0.5085099,
+        "address": "1 Rue Martin du Gard, 33150 Cenon, France",
     }
 
     geo = Geoencoder()
