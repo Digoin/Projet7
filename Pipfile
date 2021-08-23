@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 flask = "*"
 requests = "*"
+wtforms = "*"
+flask-cors = "*"
 
 [dev-packages]
 pylint = "*"

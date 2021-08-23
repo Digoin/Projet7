@@ -1,0 +1,13 @@
+{
+    "results" : [
+        {
+            "formatted_address" : "1 Rue Martin du Gard, 33150 Cenon, France",
+            "geometry" : {
+                "location" : {
+                "lat" : 44.8496861,
+                "lng" : -0.5085099
+                }
+            }
+        }
+    ]
+}
