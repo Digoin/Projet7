@@ -1,11 +1,19 @@
-<html lang="fr">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Document</title>
 </head>
 <body>
-  <label>Question</label>
-  <input type="submit" onclick="ask()" value="Register">
-  <script src="/static/script.js"></script>
+    <h1>Pose moi donc ta question</h1>
+    <form class="container">
+        <input id ="question" type ="text">
+        <input type="button" onclick="ask()" value="entrer">
+    </form>
+    <div id="chat" class="container">
+    </div>
+    <script src="/static/script.js"></script>
 </body>
 </html>

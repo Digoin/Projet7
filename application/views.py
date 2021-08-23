@@ -38,11 +38,14 @@ def question(form_data):
     
     if title == None:
         address = location["address"]
-        return f"Je n'ai pas d'anecdote sur \"{address}\" à te raconter mon enfant."
+        response = json.dumps({"response":f"Je n'ai pas d'anecdote sur \"{address}\" à te raconter mon enfant.", "status":"empty"})
+        return response
     place_dict = wikipedia.research_place(title)
     extract = wikipedia.research_place_extract(place_dict)
     data = wikipedia.correction(extract)
-    return data
+    response = json.dumps({"response":data, "status":"ok"})
+
+    return response
 
 @app.route("/api/")
 def api():
