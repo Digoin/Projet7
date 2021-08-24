@@ -2,14 +2,17 @@
 This file is meant to test the geoencoder class as in TDD methodology
 """
 
-from app.utils import Geoencoder
+from application.utils.geoencoder import Geoencoder
 import json
 
 
+
 # - Geoencoder:
+geo = Geoencoder()
+
 #   - find the location and address
 def test_parse_address():
-    with open("app/tests/mocks/json_dict.json") as file:
+    with open("application/tests/mocks/address_dict.json") as file:
         JSON_DICT = json.load(file)
 
     test_dict = {
@@ -18,7 +21,6 @@ def test_parse_address():
         "address": "1 Rue Martin du Gard, 33150 Cenon, France",
     }
 
-    geo = Geoencoder()
     geo_search = geo.parse_address(JSON_DICT)
 
     assert geo_search["latitude"] == test_dict["latitude"]

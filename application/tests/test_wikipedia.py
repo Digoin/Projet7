@@ -1,15 +1,32 @@
 """
-This file is meant to test the wikipedia reseazrch as in TDD methodology
+This file is meant to test the wikipedia research as in TDD methodology
 """
 
-from app import utils as script
-
-# https://fr.wikipedia.org/w/api.php?action=query&list=search&srsearch=Tour+Eiffel&format=json
-# https://fr.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&titles=Tour+Eiffel&formatversion=2&exsentences=5&exlimit=1&explaintext=1
+from application.utils.wikipedia import Wikipedia
+import json
 
 # - Wikipedia:
-#   - The specific research use the global article research first response as titles
+wiki = Wikipedia()
+
+#   - find the title of the research
+def test_research_address_title():
+    with open("application/tests/mocks/research_title.json") as file:
+        JSON_DICT = json.load(file)
+
+    title_search = wiki.research_address_title(JSON_DICT)
+
+    assert title_search == "Tour Eiffel"
+
+#   - find the extract of the research
+def test_research_place_extract():
+    with open("application/tests/mocks/research_extract.json") as file:
+        JSON_DICT = json.load(file)
+
+    extract_search = wiki.research_place_extract(JSON_DICT)
+
+    assert extract_search == "La Tour Eiffel est dans Paris"
+
 #   - The "\n" are erased
-# def test_correction():
-#     sentence = "La tour Eiffel est une tour de fer puddlé de 324 mètres de hauteur (avec antennes) située à Paris."
-#     assert script.correction("\nLa tour Eiffel\n est une tour de fer puddlé \nde 324 mètres\n de haut\neur (avec antennes) située à Paris.\n") == sentence
+def test_correction():
+    sentence = "La tour Eiffel est une tour de fer puddlé de 324 mètres de hauteur (avec antennes) située à Paris."
+    assert wiki.correction("\nLa tour Eiffel\n est une tour de fer puddlé \nde 324 mètres\n de haut\neur (avec antennes) située à Paris.\n") == sentence

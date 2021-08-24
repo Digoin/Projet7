@@ -1,0 +1,9 @@
+{
+    "query" : {
+        "pages" : [
+            {
+                "extract" : "La Tour Eiffel est dans Paris"
+            }
+        ]
+    }
+}
