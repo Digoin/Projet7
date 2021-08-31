@@ -10,9 +10,7 @@ filter = Filter()
 #   - filter the punctuation
 def test_punctuation():
     assert (
-        filter.punctuation(
-            'A la rue "(Roger) Martin du Gard", et plus vite que ça!!!'
-        )
+        filter.punctuation('A la rue "(Roger) Martin du Gard", et plus vite que ça!!!')
         == "A la rue Roger Martin du Gard et plus vite que ça"
     )
 
@@ -20,16 +18,10 @@ def test_punctuation():
 #   - the stopwords filter the entry
 def test_stopwords():
     assert (
-        filter.stopwords(
-            "A la rue Roger Martin du Gard et plus vite que ça"
-        )
+        filter.stopwords("A la rue Roger Martin du Gard et plus vite que ça")
         == "rue+roger+martin+gard+vite"
     )
 
+
 def test_abbreviation():
-    assert (
-        filter.abbreviation(
-            "5 Av. Anatole France"
-        )
-        == "5 Avenue Anatole France"
-    )
+    assert filter.abbreviation("5 Av. Anatole France") == "5 Avenue Anatole France"
