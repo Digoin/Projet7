@@ -1,13 +1,36 @@
-.container {
-    flex-wrap: wrap;
-}
-
-.left { 
+h1 {
     margin-left: 40%;
-    border: 2px solid red
+    font-size: 3em;
 }
 
+input {
+    width: 33em;
+    margin-left: 28%;
+    margin-bottom: 3em;
+    font-size: 1.1em;
+}
+
+button {
+    font-size: 1.1em;
+}
+
+p {
+    color: white;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: Arial, Helvetica, sans-serif;
+}
 .right {
-    margin-right: 40%;
-    border: 2px solid blue
+    margin-left: 60%;
+    margin-right: 5%;
+    background-color: orange;
+    text-align: end;
+    padding: 0.3em;
+}
+
+.left {
+    margin-right: 60%;
+    margin-left: 5%;
+    background-color:  blue;
+    padding: 0.3em;
 }
