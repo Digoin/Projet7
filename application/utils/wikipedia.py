@@ -33,6 +33,7 @@ class Wikipedia:
     def research_place_extract(self, json_dict):
         """This function get the desription of the search"""
         extract = json.loads(json_dict)["query"]["pages"][0]["extract"]
+        print(type(extract))
         return extract
 
     def correction(self, extract):

@@ -11,20 +11,12 @@ wiki = Wikipedia()
 #   - find the title of the research
 def test_research_address_title():
     with open("application/tests/mocks/research_title.json") as file:
-        JSON_DICT = json.load(file)
-
-    title_search = wiki.research_address_title(JSON_DICT)
-
-    assert title_search == "Tour Eiffel"
+        assert wiki.research_address_title(file.read()) == "Tour Eiffel"
 
 #   - find the extract of the research
 def test_research_place_extract():
     with open("application/tests/mocks/research_extract.json") as file:
-        JSON_DICT = json.load(file)
-
-    extract_search = wiki.research_place_extract(JSON_DICT)
-
-    assert extract_search == "La Tour Eiffel est dans Paris"
+        assert wiki.research_place_extract(file.read()) ==  "La Tour Eiffel est dans Paris"
 
 #   - The "\n" are erased
 def test_correction():
