@@ -43,3 +43,10 @@ p {
     background-color:  blue;
     padding: 0.3em;
 }
+
+.dots {
+    border-radius: 8px;
+    margin-left: 5%;
+    width: 4em;
+    height: 2em;
+}
