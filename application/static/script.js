@@ -22,9 +22,9 @@ let ask = async function() {
 
 let map;
 
-function initMap() {
+function initMap(latitude, longitude) {
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
+        center: { lat: latitude, lng: longitude },
         zoom: 16,
   });
 }

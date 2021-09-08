@@ -47,13 +47,16 @@ def question(form_data):
             {
                 "response": f"Je n'ai pas d'anecdote sur \"{address}\" à te raconter mon enfant.",
                 "status": "empty",
+                "latitude": location["latitude"],
+                "longitude": location["longitude"]
+                
             }
         )
         return response
     place_dict = wikipedia.research_place(title)
     extract = wikipedia.research_place_extract(place_dict)
     data = wikipedia.correction(extract)
-    response = json.dumps({"response": data, "status": "ok"})
+    response = json.dumps({"response": data, "status": "ok", "latitude": location["latitude"], "longitude": location["longitude"]})
 
     return response
 
