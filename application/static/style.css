@@ -1,13 +1,10 @@
+html, body {
+    height: 100%;
+}
+
 h1 {
     margin-left: 40%;
     font-size: 3em;
-}
-
-input {
-    width: 33em;
-    margin-left: 28%;
-    margin-bottom: 3em;
-    font-size: 1.1em;
 }
 
 button {
@@ -21,9 +18,33 @@ p {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#form {
+    display: flex;
+}
+
+#question {
+    width: 33em;
+    margin-left: 28%;
+    margin-bottom: 3em;
+    font-size: 1.1em;
+}
+
+#validate {
+    height: 2em;
+    width: 4.3em;
+}
+
+#map {
+    height: 20%;
+}
+
 .container {
     display: flex;
     flex-direction: column;
+    min-height: 75%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: lightgray;
 }
 
 .right {
