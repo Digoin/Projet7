@@ -6,7 +6,6 @@ from application.utils.geoencoder import Geoencoder
 import json
 
 
-
 # - Geoencoder:
 geo = Geoencoder()
 
