@@ -2,15 +2,14 @@
 
 import json
 import requests
-
-from password import GOOGLE_API_KEY
+import os
 
 
 class Geoencoder:
     def get_response(self, search):
         """This function call the google maps API with the question of the user"""
         response = requests.get(
-            f"https://maps.googleapis.com/maps/api/geocode/json?address={search}&key={GOOGLE_API_KEY}"
+            f"https://maps.googleapis.com/maps/api/geocode/json?address={search}&key={os.getenv('GOOGLE_API_KEY')}"
         )
         return json.loads(response.text)
 

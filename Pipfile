@@ -8,7 +8,6 @@ flask = "*"
 requests = "*"
 wtforms = "*"
 flask-cors = "*"
-waitress = "*"
 
 [dev-packages]
 pylint = "*"
