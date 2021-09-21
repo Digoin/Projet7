@@ -11,8 +11,6 @@ app = Flask(__name__)
 
 CORS(app)
 
-app.config.from_object("config")
-
 
 """This is the main webpage"""
 
