@@ -13,16 +13,18 @@ let ask = async function() {
     const chat = document.getElementById("chat")
 
     // we put a loader when grandpy is loading the response
-    chat.innerHTML = `<p class="right">${question}</p>`+chat.innerHTML
-    chat_save = chat.innerHTML
-    chat.innerHTML = `<img class="dots" src="static/image/3dots.gif">`+chat_save
+    chat.innerHTML = `<p class="left, loader" id=loader></p><p class="right">${question}</p>`+chat.innerHTML
 
     // the function call the question function from views.py
     let response = await fetch(`http://localhost:5000/question/${question}`)
     let data = await response.json()
 
+    //
+    let loader = document.getElementById("loader")
+    loader.classList.remove("loader")
+
     // there we get rid of the loader and put the repsonse of the api and a map tag
-    chat.innerHTML = `<p class="left">${data["response"]}</p>`+ chat_save
+    chat.innerHTML = `<p class="left">${data["response"]}</p>`+ chat.innerHTML
     chat.innerHTML = `<div id="map"></div>` + chat.innerHTML
 
     // we call the function of google maps API
