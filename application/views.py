@@ -2,9 +2,9 @@
 import json
 from flask import Flask, render_template
 from flask_cors import CORS
-from utils.filter import Filter
-from utils.geoencoder import Geoencoder
-from utils.wikipedia import Wikipedia
+from .utils.filter import Filter
+from .utils.geoencoder import Geoencoder
+from .utils.wikipedia import Wikipedia
 
 
 app = Flask(__name__)

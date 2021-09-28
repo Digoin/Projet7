@@ -6,8 +6,6 @@ RUN pip3 install -r /requirements.txt
 COPY . /app
 WORKDIR /app
 
-EXPOSE 8000
+ENV GOOGLE_API_KEY="AIzaSyAVPd5yJinqskJEjbo1Xmd-9gMsmXwVReg"
 
-ENV GOOGLE_API_KEY=""
-
-CMD ["gunicorn", "--bind", ":8000", "application.wsgi:app"]
+CMD ["./gunicorn_starter.sh"]
