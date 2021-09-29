@@ -1,3 +1,4 @@
-password.py
 .vscode
-.pytest-cache
+.pytest_cache
+*__pycache__
+Dockerfile

@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: gunicorn wsgi:application
+  web: gunicorn wsgi:app
