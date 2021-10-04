@@ -1,7 +1,9 @@
 """This file contain all the website url and python functions calls"""
 import json
+import os
 from flask import Flask, render_template
 from flask_cors import CORS
+
 from .utils.filter import Filter
 from .utils.geoencoder import Geoencoder
 from .utils.wikipedia import Wikipedia
@@ -16,7 +18,7 @@ CORS(app)
 
 @app.route("/")
 def base():
-    return render_template("question.html")
+    return render_template("question.html", GOOGLE_API_KEY=os.getenv('GOOGLE_API_KEY'))
 
 
 """This is called when the user validate the form"""
