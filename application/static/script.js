@@ -16,7 +16,7 @@ let ask = async function() {
     chat.innerHTML = `<p class="left, loader" id=loader></p><p class="right">${question}</p>`+chat.innerHTML
 
     // the function call the question function from views.py
-    let response = await fetch(`http://localhost:8003/question/${question}`)
+    let response = await fetch(`http://https://powerful-plateau-08757.herokuapp.com/question/${question}`)
     let data = await response.json()
 
     //
