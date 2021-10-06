@@ -23,14 +23,14 @@ let ask = async function() {
     let loader = document.getElementById("loader")
     loader.classList.remove("loader")
 
-    // there we get rid of the loader and put the repsonse of the api and a map tag
+    // there we get rid of the loader and put the repsonse of the api
     chat.innerHTML = `<p class="left">${data["response"]}</p>`+ chat.innerHTML
-    if (data["map"] === true) {
-        chat.innerHTML = `<div id="map"></div>` + chat.innerHTML
-    }
 
     // we call the function of google maps API
-    initMap(data["latitude"], data["longitude"])
+    if (data["map"] === true) {
+        chat.innerHTML = `<div id="map"></div>` + chat.innerHTML
+        initMap(data["latitude"], data["longitude"])
+    }
 }
 
 
