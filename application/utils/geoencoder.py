@@ -15,7 +15,10 @@ class Geoencoder:
 
     def parse_address(self, data):
         "This function search for the desired content of the API response"
-        results = data["results"][0]
+        try:
+            results = data["results"][0]
+        except IndexError:
+            return None
         latitude = results["geometry"]["location"]["lat"]
         longitude = results["geometry"]["location"]["lng"]
         address = results["formatted_address"]

@@ -38,6 +38,16 @@ def question(form_data):
     geo_response = geoencoder.get_response(filtered)
     location = geoencoder.parse_address(geo_response)
 
+    # if google dont find any location about the request, GrandpyBOT will say it
+    if location is None:
+        response = json.dumps(
+            {
+                "response": "Je n'ai pas compris mon enfant, peut tu préciser ?",
+                "map": False,
+            }
+        )
+        return response
+
     # we use the google maps API repsponse and use it on wikipedia API
     location["address"] = data_filter.abbreviation(location["address"])
     address_dict = wikipedia.research_address(location)
@@ -49,7 +59,7 @@ def question(form_data):
         response = json.dumps(
             {
                 "response": f"Je n'ai pas d'anecdote sur \"{address}\" à te raconter mon enfant.",
-                "status": "empty",
+                "map": True,
                 "latitude": location["latitude"],
                 "longitude": location["longitude"],
             }
@@ -63,7 +73,7 @@ def question(form_data):
     response = json.dumps(
         {
             "response": data,
-            "status": "ok",
+            "map": True,
             "latitude": location["latitude"],
             "longitude": location["longitude"],
         }

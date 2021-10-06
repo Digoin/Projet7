@@ -16,8 +16,9 @@ let ask = async function() {
     chat.innerHTML = `<p class="left, loader" id=loader></p><p class="right">${question}</p>`+chat.innerHTML
 
     // the function call the question function from views.py
-    let response = await fetch(`https://powerful-plateau-08757.herokuapp.com/question/${question}`)
+    let response = await fetch(`http://localhost:8003/question/${question}`)
     let data = await response.json()
+    alert(data["map"])
 
     //
     let loader = document.getElementById("loader")
@@ -25,7 +26,9 @@ let ask = async function() {
 
     // there we get rid of the loader and put the repsonse of the api and a map tag
     chat.innerHTML = `<p class="left">${data["response"]}</p>`+ chat.innerHTML
-    chat.innerHTML = `<div id="map"></div>` + chat.innerHTML
+    if (data["map"] === true) {
+        chat.innerHTML = `<div id="map"></div>` + chat.innerHTML
+    }
 
     // we call the function of google maps API
     initMap(data["latitude"], data["longitude"])
