@@ -18,9 +18,8 @@ let ask = async function() {
     // the function call the question function from views.py
     let response = await fetch(`https://powerful-plateau-08757.herokuapp.com/question/${question}`)
     let data = await response.json()
-    alert(data["map"])
 
-    //
+    // we remove the loader
     let loader = document.getElementById("loader")
     loader.classList.remove("loader")
 
